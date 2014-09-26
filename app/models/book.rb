@@ -1,4 +1,6 @@
+
 class Book < ActiveRecord::Base
+
 	validates :title, :author, :pages, :price, presence: true
 	validates :pages,
 		numericality: {only_integer: true, greater_than_or_equal_to: 0},
@@ -6,5 +8,9 @@ class Book < ActiveRecord::Base
 	validates :price,
 		numericality: { greater_than_or_equal_to: 0},
 		if: "price.present?"
+
+	scope :bargains, -> { where('price < 10.00') }
+	
+	scope :by, ->(author) { where('author = ?', author) }
 
 end
