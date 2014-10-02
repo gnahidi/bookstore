@@ -1,5 +1,7 @@
 Bookstore::Application.routes.draw do
   
+  resources :reviews
+
   # Replaced lines 4-10 with partial's demonstration
   #get "/books" => "books#index", as: 'books'
   #get "/books/new" => "books#new", as: 'new_book'
