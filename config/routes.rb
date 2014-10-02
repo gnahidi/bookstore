@@ -13,6 +13,7 @@ Bookstore::Application.routes.draw do
   
   # Begin Partials Implementation
   resources :books do
+    resources :reviews
     get 'page/:page', :action => :index, :on => :collection
   end
   root 'books#index'
