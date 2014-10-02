@@ -14,4 +14,9 @@ class Book < ActiveRecord::Base
 	
 	scope :by, ->(author) { where('author = ?', author) }
 
+	def average_stars
+		reviews.average(:stars)
+	end
+	
+
 end
