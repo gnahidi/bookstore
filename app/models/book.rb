@@ -15,7 +15,11 @@ class Book < ActiveRecord::Base
 	scope :by, ->(author) { where('author = ?', author) }
 
 	def average_stars
-		reviews.average(:stars)
+		if reviews.loaded?
+			reviews.map(&:stars).compact.average
+		else
+			reviews.average(:stars)
+		end
 	end
 
 
